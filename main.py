@@ -77,7 +77,6 @@ IMPORTANT:
 - Do NOT include any introduction or commentary.
 - Respond ONLY in the following exact format.
 - Do NOT add extra text before or after.
-- Ignore any unrelated data such as brand names, batch codes, product IDs, serial numbers, or packaging info (e.g., "SARGENTO (CO,CT) - NFY120DHB").
 - Focus only on meaningful ingredients and Indian food items.
 - IF no usable ingredients is found politely say "Please Try again with another food! Confusion with some ingredients!"
 
