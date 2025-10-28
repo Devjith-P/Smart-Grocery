@@ -24,7 +24,7 @@ client = InferenceClient(
 prompt_model = genai.GenerativeModel("gemini-2.0-flash")
 
 
-model = pickle.load(open("/home/devjith/Luminar/Projects/Smart Grocery/Models/Nutrition_model_Decision_tree.pkl","rb"))
+model = pickle.load(open("Models/Nutrition_model_Decision_tree.pkl","rb"))
 
 recipe_url = 'https://drive.google.com/file/d/18xaw_nR3q8BPlD4M96_1YVUIJhzMe7ox/view?usp=sharing'
 recipe_file_id = recipe_url.split('/d/')[1].split('/')[0]
