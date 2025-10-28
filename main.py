@@ -175,7 +175,10 @@ if st.button("Find Deficit"):
     ])
     pred_enc = model.predict(df)
     st.session_state.deficit = pred_enc[0].split("_")[0]
-    st.write(f"You are deficit in {st.session_state.deficit} !!")
+    if st.session_state.deficit == 'Balanced':
+        st.write("You have a balanced diet. No deficiencies !!")
+    else:
+        st.write(f"You are deficit in {st.session_state.deficit} !!")
     
 
 
