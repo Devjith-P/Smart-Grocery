@@ -2,3 +2,4 @@ streamlit
 pandas
 google-generativeai
 huggingface_hub
+scikit-learn
