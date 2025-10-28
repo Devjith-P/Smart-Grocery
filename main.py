@@ -137,9 +137,9 @@ Servings: <number>
 
 
 
-st.title("Nutrition Deficiency Based Grocery and Recipe Recommendation ")
+st.title("Smart Grocery and Recipe Recommendation")
 
-st.write("Enter the details below to calculate the nutrients and recommend grocery and recipe")
+st.write("Enter the details below")
 
 age = st.number_input("Age",18,80)
 height = st.number_input("Height in cm",100)
