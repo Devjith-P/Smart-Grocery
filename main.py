@@ -77,7 +77,7 @@ Input Ingredients: {grocery}
 - If you find text that looks like a **batch code**, **barcode**, **product ID**, or **serial number** (e.g., "NFY120DHB", "CO,CT", "ABC-1234"), **ignore or replace** it.
 - If the line includes a **brand or packaged food name** (e.g., "SARGENTO", "Kraft", "Heinz", "Trader Joe’s"), 
   identify what the actual **food ingredient** is (e.g., SARGENTO → cheese, Heinz → tomato ketchup).
-- Assume these brands are from the US or other countries, and replace them with the most **common equivalent ingredient** if available in indian cusine
+- Assume these brands are from the US or other countries, and replace them with the most **common equivalent ingredient** if available in indian cusine.
   For example:
   - “SARGENTO” → “Cheddar cheese”
   - “Heinz ketchup” → “Tomato sauce”
@@ -137,7 +137,7 @@ Servings: <number>
 
 
 
-st.title("Smart Grocery and Recipe Recommendation")
+st.title("Smart Grocery and Recipe Recommendation ")
 
 st.write("Enter the details below")
 
