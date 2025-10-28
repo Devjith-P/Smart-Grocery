@@ -84,7 +84,7 @@ Strict Output Format (use this exact structure every time):
 
 **Cuisine: Indian**
 
-**Regional Style: <North Indian / South Indian / Bengali / etc.>**
+**Regional Style:** <North Indian / South Indian / Bengali / etc.>
 
 **Ingredients:**
 - <ingredient 1>
