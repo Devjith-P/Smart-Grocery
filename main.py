@@ -80,18 +80,18 @@ IMPORTANT:
 
 Strict Output Format (use this exact structure every time):
 
-Dish Name: <name of the Indian dish>
+**Dish Name: <name of the Indian dish>**
 
-Cuisine: Indian
+**Cuisine: Indian**
 
-Regional Style: <North Indian / South Indian / Bengali / etc.>
+**Regional Style: <North Indian / South Indian / Bengali / etc.>**
 
-Ingredients:
+**Ingredients:**
 - <ingredient 1>
 - <ingredient 2>
 - <ingredient 3>
 
-Cooking Instructions:
+**Cooking Instructions:**
 1. <step 1>
 2. <step 2>
 3. <step 3>
@@ -100,13 +100,13 @@ Preparation Time: <in minutes>
 Cooking Time: <in minutes>
 Servings: <number>
 
-Nutritional Info (approximate):
+**Nutritional Info (approximate):**
 - Calories: <value>
 - Protein: <value>
 - Fat: <value>
 - Carbohydrates: <value>
 
-Serving Suggestion:
+**Serving Suggestion:**
 <Describe how to serve the dish (e.g., with rice, roti, chutney)>
 """
             }
