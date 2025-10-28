@@ -73,7 +73,13 @@ Always focus on Indian flavors, spices, and cooking methods.
 
 Input Ingredients: {grocery}
 
-Output Format (use this exact structure every time):
+IMPORTANT:
+- Do NOT include any introduction or commentary.
+- Respond ONLY in the following exact format.
+- Do NOT add extra text before or after.
+
+Strict Output Format (use this exact structure every time):
+
 Dish Name: <name of the Indian dish>
 
 Cuisine: Indian
