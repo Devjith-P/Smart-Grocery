@@ -73,10 +73,28 @@ Always focus on Indian flavors, spices, and cooking methods.
 
 Input Ingredients: {grocery}
 
+**Ingredient Understanding Rules:**
+- If you find text that looks like a **batch code**, **barcode**, **product ID**, or **serial number** (e.g., "NFY120DHB", "CO,CT", "ABC-1234"), **ignore or replace** it.
+- If the line includes a **brand or packaged food name** (e.g., "SARGENTO", "Kraft", "Heinz", "Trader Joe’s"), 
+  identify what the actual **food ingredient** is (e.g., SARGENTO → cheese, Heinz → tomato ketchup).
+- Assume these brands are from the US or other countries, and replace them with the most **common equivalent ingredient** used in Indian cuisine.
+  For example:
+  - “SARGENTO” → “Cheddar cheese”
+  - “Heinz ketchup” → “Tomato sauce”
+  - “Trader Joe’s Almond Butter” → “Almond butter”
+
+**Example Input:**
+SARGENTO (CO,CT) - NFY120DHB
+
+**Example Replacement:**
+Cheddar cheese
+
+---
 IMPORTANT:
 - Do NOT include any introduction or commentary.
 - Respond ONLY in the following exact format.
 - Do NOT add extra text before or after.
+- if any unrelated data such as brand names, batch codes, product IDs, serial numbers, or packaging info (e.g., "SARGENTO (CO,CT) - NFY120DHB") is found, search for these .
 - Focus only on meaningful ingredients and Indian food items.
 - IF no usable ingredients is found politely say "Please Try again with another food! Confusion with some ingredients!"
 
