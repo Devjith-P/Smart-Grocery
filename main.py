@@ -203,4 +203,4 @@ if st.session_state.deficit and st.session_state.rec_food:
 if st.session_state.rec_food:
     if st.button("Proceed with the recommended food?"):
         st.session_state.recipe = recipe_selection(st.session_state.rec_food)
-        st.write(st.session_state.recipe['content'])
+        st.markdown(st.session_state.recipe['content'])
