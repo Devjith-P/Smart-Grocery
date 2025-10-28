@@ -49,6 +49,11 @@ def gemini_model(meals):
 
 
 def clean_product_name(name):
+    # Words to skip - common prefixes and irrelevant words
+    skip_words = {'hot', 'cold', 'fresh', 'frozen', 'raw', 'cooked', 'dried', 'vitamin',
+                 'natural', 'organic', 'premium', 'quality', 'brand', 'packed', 'pieces',
+                 'sliced', 'diced', 'whole', 'pure'}
+    
     # Remove brand names in parentheses
     name = re.sub(r'\([^)]*\)', '', name)
     # Remove special codes/numbers
@@ -57,10 +62,16 @@ def clean_product_name(name):
     name = re.sub(r'-', ' ', name)
     name = re.sub(r'\s+', ' ', name)
     # Strip any leading/trailing whitespace
-    name = name.strip()
-    # Get the first word as the main ingredient (usually the most relevant part)
-    main_ingredient = name.split()[0] if name else ""
-    return main_ingredient
+    name = name.strip().lower()
+    
+    # Split into words and find the first meaningful ingredient word
+    words = name.split()
+    for word in words:
+        if word not in skip_words and len(word) > 1:  # Skip single-letter words
+            return word.upper()  # Return the ingredient in uppercase to match the original format
+    
+    # If no valid ingredient found, return the first word as fallback
+    return words[0].upper() if words else ""
 
 def grocery_selection(food_df, l):
     shuffled_df = food_df.sample(frac=1).reset_index(drop=True)
