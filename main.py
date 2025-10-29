@@ -74,6 +74,8 @@ Always focus on Indian flavors, spices, and cooking methods.
 Input Ingredients: {grocery}
 
 **Ingredient Understanding Rules:**
+- take into consideration the ingredient name inside the ingerdients list .
+- They may have some values like batch code and all but i need you to just ignore them and use any ingedient name present in them and use that ingredient name for recipe 
 - If you find text that looks like a **batch code**, **barcode**, **product ID**, or **serial number** (e.g., "NFY120DHB", "CO,CT", "ABC-1234"), **ignore or replace** it.
 - If the line includes a **brand or packaged food name** (e.g., "SARGENTO", "Kraft", "Heinz", "Trader Joe’s"), 
   identify what the actual **food ingredient** is (e.g., SARGENTO → cheese, Heinz → tomato ketchup).
