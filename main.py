@@ -29,7 +29,7 @@ model = pickle.load(open("Models/Nutrition_model_Random_forest.pkl","rb"))
 
 
 
-food_url = 'https://drive.google.com/file/d/1ovt05RW5CxBcl_YXQWeMVkdKqct2nqvq/view?usp=sharing'
+food_url = 'https://drive.google.com/file/d/1pqS9SQCPLGVeUDSIloDFOlHmE9wLqu1d/view?usp=sharing'
 food_file_id = food_url.split('/d/')[1].split('/')[0]
 food_download_url = f'https://drive.google.com/uc?id={food_file_id}'
 
@@ -46,14 +46,17 @@ def gemini_model(meals):
 
 
 
-def grocery_selection(food_df, l):
+def grocery_selection(food_df, l,diet_type):
     shuffled_df = food_df.sample(frac=1).reset_index(drop=True)
+    diet = 'Veg' if diet_type == 1 else 'Non-Veg'
     for _, row in shuffled_df.iterrows():
         try:
             nutrients = ast.literal_eval(row['nutrient_name'])
+            food_type = ast.literal_eval(row['food_type'])
         except:
             nutrients = []
-        if any(l.lower() in n.lower() for n in nutrients):
+            food_type = []
+        if any(l.lower() in n.lower() for n in nutrients) and diet in food_type:
             return row['food_name']
         
 def recipe_selection(grocery):
@@ -137,6 +140,11 @@ Servings: <number>
 
 
 
+
+
+
+
+
 st.title("Smart Grocery and Recipe Recommendation ")
 
 st.write("Enter the details below")
@@ -151,12 +159,17 @@ diet_inp = st.selectbox("Diet Type",['Vegetarian','Non-Vegetarian','Vegan'])
 gender_inp = st.selectbox("Gender",['Male','Female'])
 sun_exp = st.number_input("Sun Exposure per day in hours")*60
 
-
-
-
 bmi = weight/((height/100)**2)
 
 meals = st.text_input("Mention some meals/drinks you have regularly  "," (eg: Rice,Orange smoothie, Dosa Sambar )")
+
+
+
+
+
+
+
+
 
 
 if 'deficit' not in st.session_state:
@@ -184,7 +197,7 @@ if st.button("Find Deficit"):
     gender = 1 if gender_inp =='Male' else 0
     activity_moderate = 1 if activity_level_inp == 'Moderate' else 0
     activity_sedentary = 1 if activity_level_inp == 'Sedentary' else 0
-    diet_veg = 1 if diet_inp == 'Vegetarian' else 0
+    st.session_state.diet_veg = 1 if diet_inp == 'Vegetarian' else 0
     diet_vegan = 1 if diet_inp == 'Vegan' else 0
 
     vitamin_d_IU = sun_exp * 66.7
@@ -192,7 +205,7 @@ if st.button("Find Deficit"):
     df = pd.DataFrame([[
         age, bmi, sleep_hours, avg_calories, protein_g, carbs_g, fat_g, fiber_g,
         sugar_g, calcium_mg, iron_mg, vitamin_c_mg, vitamin_d_IU, vitamin_b12_mcg,
-        water_level, sun_exp, gender, activity_moderate, activity_sedentary, diet_veg, diet_vegan
+        water_level, sun_exp, gender, activity_moderate, activity_sedentary, st.session_state.diet_veg,diet_veg
     ]], columns=[
         "age","bmi","avg_sleep_hours","avg_calories","protein_g","carbs_g","fat_g",
         "fiber_g","sugar_g","calcium_mg","iron_mg","vitamin_c_mg","vitamin_d_IU",
@@ -209,7 +222,7 @@ if st.button("Find Deficit"):
 
 
     st.write("Recommended food ")
-    st.session_state.rec_food = grocery_selection(st.session_state.food,st.session_state.deficit)
+    st.session_state.rec_food = grocery_selection(st.session_state.food,st.session_state.deficit,st.session_state.diet_veg)
     st.write(st.session_state.rec_food)
 
 
