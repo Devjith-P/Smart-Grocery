@@ -56,6 +56,7 @@ def grocery_selection(food_df, l,diet_type):
         except:
             nutrients = []
             food_type = []
+        st.write(f"{diet} , {food_type}")
         if any(l.lower() in n.lower() for n in nutrients) and diet in food_type:
             return row['food_name']
         
