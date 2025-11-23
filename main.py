@@ -205,7 +205,7 @@ if st.button("Find Deficit"):
     df = pd.DataFrame([[
         age, bmi, sleep_hours, avg_calories, protein_g, carbs_g, fat_g, fiber_g,
         sugar_g, calcium_mg, iron_mg, vitamin_c_mg, vitamin_d_IU, vitamin_b12_mcg,
-        water_level, sun_exp, gender, activity_moderate, activity_sedentary, diet_veg,diet_veg
+        water_level, sun_exp, gender, activity_moderate, activity_sedentary, diet_veg,diet_vegan
     ]], columns=[
         "age","bmi","avg_sleep_hours","avg_calories","protein_g","carbs_g","fat_g",
         "fiber_g","sugar_g","calcium_mg","iron_mg","vitamin_c_mg","vitamin_d_IU",
