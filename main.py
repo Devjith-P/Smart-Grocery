@@ -26,16 +26,14 @@ prompt_model = genai.GenerativeModel("gemini-2.0-flash")
 
 model = pickle.load(open("Models/Nutrition_model_Random_forest.pkl","rb"))
 
-recipe_url = 'https://drive.google.com/file/d/18xaw_nR3q8BPlD4M96_1YVUIJhzMe7ox/view?usp=sharing'
-recipe_file_id = recipe_url.split('/d/')[1].split('/')[0]
-recipe_download_url = f'https://drive.google.com/uc?id={recipe_file_id}'
+
 
 
 food_url = 'https://drive.google.com/file/d/1ovt05RW5CxBcl_YXQWeMVkdKqct2nqvq/view?usp=sharing'
 food_file_id = food_url.split('/d/')[1].split('/')[0]
 food_download_url = f'https://drive.google.com/uc?id={food_file_id}'
 
-
+ 
 
 def gemini_model(meals):
     response = prompt_model.generate_content("give me the total sum of avg_calories', 'protein_g', 'carbs_g', 'fat_g', 'fiber_g', 'sugar_g', 'calcium_mg', 'iron_mg', 'vitamin_c_mg','vitamin_d_IU', 'vitamin_b12_mcg' " + meals + ".i want the output in a single structure with each nutrient havng the combined nutrients amount in all meals. strictly return only valid json and no explanation or text other than json ")
