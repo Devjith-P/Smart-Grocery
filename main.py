@@ -197,7 +197,7 @@ if st.button("Find Deficit"):
     gender = 1 if gender_inp =='Male' else 0
     activity_moderate = 1 if activity_level_inp == 'Moderate' else 0
     activity_sedentary = 1 if activity_level_inp == 'Sedentary' else 0
-    st.session_state.diet_veg = 1 if diet_inp == 'Vegetarian' else 0
+    diet_veg = 1 if diet_inp == 'Vegetarian' else 0
     diet_vegan = 1 if diet_inp == 'Vegan' else 0
 
     vitamin_d_IU = sun_exp * 66.7
@@ -205,7 +205,7 @@ if st.button("Find Deficit"):
     df = pd.DataFrame([[
         age, bmi, sleep_hours, avg_calories, protein_g, carbs_g, fat_g, fiber_g,
         sugar_g, calcium_mg, iron_mg, vitamin_c_mg, vitamin_d_IU, vitamin_b12_mcg,
-        water_level, sun_exp, gender, activity_moderate, activity_sedentary, st.session_state.diet_veg,diet_veg
+        water_level, sun_exp, gender, activity_moderate, activity_sedentary, diet_veg,diet_veg
     ]], columns=[
         "age","bmi","avg_sleep_hours","avg_calories","protein_g","carbs_g","fat_g",
         "fiber_g","sugar_g","calcium_mg","iron_mg","vitamin_c_mg","vitamin_d_IU",
@@ -222,7 +222,7 @@ if st.button("Find Deficit"):
 
 
     st.write("Recommended food ")
-    st.session_state.rec_food = grocery_selection(st.session_state.food,st.session_state.deficit,st.session_state.diet_veg)
+    st.session_state.rec_food = grocery_selection(st.session_state.food,st.session_state.deficit,diet_veg)
     st.write(st.session_state.rec_food)
 
 
