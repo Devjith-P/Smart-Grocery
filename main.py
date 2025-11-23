@@ -52,7 +52,7 @@ def grocery_selection(food_df, l,diet_type):
     for _, row in shuffled_df.iterrows():
         try:
             nutrients = ast.literal_eval(row['nutrient_name'])
-            food_type = ast.literal_eval(row['food_type'])
+            food_type = row['food_type']
         except:
             nutrients = []
             food_type = []
