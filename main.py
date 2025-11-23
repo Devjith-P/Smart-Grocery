@@ -186,6 +186,8 @@ if 'food' not in st.session_state:
 if "rec_food" not in st.session_state:
     st.session_state.rec_food = None
 
+if "diet_type" not in st.session_state:
+    st.session_state.diet_type = None
 
 
 if st.button("Find Deficit"):
@@ -220,16 +222,16 @@ if st.button("Find Deficit"):
     else:
         st.write(f"You are deficit in {st.session_state.deficit} !!")
     
-
+    st.session_state.diet_type = diet_veg
 
     st.write("Recommended food ")
-    st.session_state.rec_food = grocery_selection(st.session_state.food,st.session_state.deficit,diet_veg)
+    st.session_state.rec_food = grocery_selection(st.session_state.food,st.session_state.deficit,st.session_state.diet_veg)
     st.write(st.session_state.rec_food)
 
 
 if st.session_state.deficit and st.session_state.rec_food:
     if st.button("Recommend another"):
-        st.session_state.rec_food  = grocery_selection(st.session_state.food, st.session_state.deficit,diet_veg)
+        st.session_state.rec_food  = grocery_selection(st.session_state.food, st.session_state.deficit,st.session_state.diet_veg)
         if st.session_state.rec_food:
             st.write(f"Recommended food: **{st.session_state.rec_food }**")
         else:
