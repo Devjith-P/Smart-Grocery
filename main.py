@@ -225,13 +225,13 @@ if st.button("Find Deficit"):
     st.session_state.diet_type = diet_veg
 
     st.write("Recommended food ")
-    st.session_state.rec_food = grocery_selection(st.session_state.food,st.session_state.deficit,st.session_state.diet_veg)
+    st.session_state.rec_food = grocery_selection(st.session_state.food,st.session_state.deficit,st.session_state.diet_type)
     st.write(st.session_state.rec_food)
 
 
 if st.session_state.deficit and st.session_state.rec_food:
     if st.button("Recommend another"):
-        st.session_state.rec_food  = grocery_selection(st.session_state.food, st.session_state.deficit,st.session_state.diet_veg)
+        st.session_state.rec_food  = grocery_selection(st.session_state.food, st.session_state.deficit,st.session_state.diet_type)
         if st.session_state.rec_food:
             st.write(f"Recommended food: **{st.session_state.rec_food }**")
         else:
