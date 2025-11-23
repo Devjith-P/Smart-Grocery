@@ -56,7 +56,7 @@ def grocery_selection(food_df, l,diet_type):
         except:
             nutrients = []
             food_type = []
-            st.write("error")
+            
         if any(l.lower() in n.lower() for n in nutrients) and diet in food_type:
             return row['food_name']
         
@@ -229,7 +229,7 @@ if st.button("Find Deficit"):
 
 if st.session_state.deficit and st.session_state.rec_food:
     if st.button("Recommend another"):
-        st.session_state.rec_food  = grocery_selection(st.session_state.food, st.session_state.deficit)
+        st.session_state.rec_food  = grocery_selection(st.session_state.food, st.session_state.deficit,diet_veg)
         if st.session_state.rec_food:
             st.write(f"Recommended food: **{st.session_state.rec_food }**")
         else:
