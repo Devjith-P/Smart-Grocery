@@ -10,18 +10,24 @@ import ast
 import os
 from huggingface_hub import InferenceClient
 
-genai.configure(api_key=st.secrets["gemini_api"])
 
+
+
+
+nutrition_client = InferenceClient(
+    model="Qwen/Qwen2.5-7B-Instruct",
+    token=st.secrets["hugging_face_api"]
+)
 
 
 client = InferenceClient(
     provider="nebius",
-    api_key=st.secrets["hugging_face_api"],
+    api_key=st.secrets["hugging_face_api"]
+    
 )
 
 
 
-prompt_model = genai.GenerativeModel("gemini-2.0-flash")
 
 
 model = pickle.load(open("Models/Nutrition_model_Random_forest.pkl","rb"))
@@ -35,14 +41,35 @@ food_download_url = f'https://drive.google.com/uc?id={food_file_id}'
 
  
 
-def gemini_model(meals):
-    response = prompt_model.generate_content("give me the total sum of avg_calories', 'protein_g', 'carbs_g', 'fat_g', 'fiber_g', 'sugar_g', 'calcium_mg', 'iron_mg', 'vitamin_c_mg','vitamin_d_IU', 'vitamin_b12_mcg' " + meals + ".i want the output in a single structure with each nutrient havng the combined nutrients amount in all meals. strictly return only valid json and no explanation or text other than json ")
-    raw = response.text.strip()
-    match = re.search(r"\{.*\}",raw,re.DOTALL)
-    if match:
-        clean_response = match.group(0)
-        nutrients = js.loads(clean_response)
-    return nutrients
+def nutrition_llama(meals):
+    prompt = f"""
+Return ONLY valid JSON.
+Estimate total nutrients.
+
+Meal: {meals}
+
+Keys:
+avg_calories, protein_g, carbs_g, fat_g, fiber_g, sugar_g,
+calcium_mg, iron_mg, vitamin_c_mg, vitamin_d_IU, vitamin_b12_mcg
+"""
+
+    response = nutrition_client.chat.completions.create(
+        messages=[
+            {"role": "system", "content": "You are a nutrition estimation assistant."},
+            {"role": "user", "content": prompt}
+        ],
+        temperature=0.1,
+        max_tokens=300
+    )
+
+    raw = response.choices[0].message.content
+
+    match = re.search(r"\{.*\}", raw, re.DOTALL)
+    if not match:
+        raise ValueError("Model did not return valid JSON")
+
+    return js.loads(match.group(0))
+
 
 
 
@@ -191,7 +218,7 @@ if "diet_type" not in st.session_state:
 
 
 if st.button("Find Deficit"):
-    nutrients = gemini_model(meals)
+    nutrients = nutrition_llama(meals)
 
     for key, value in nutrients.items():
         globals()[key] = value
